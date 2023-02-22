@@ -9,6 +9,12 @@ micronaut:
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
+  server:
+    netty:
+      worker:
+        threads: 10000
+      parent:
+        threads: 10000
 netty:
   default:
     allocator:

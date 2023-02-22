@@ -11,6 +11,11 @@ micronaut:
         mapping: /swagger-ui/**
   server:
     port: 8001
+    netty:
+      worker:
+        threads: 10000
+      parent:
+        threads: 10000
   http:
     services:
       server:
