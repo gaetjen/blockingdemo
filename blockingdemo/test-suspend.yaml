@@ -1,0 +1,15 @@
+config:
+  target: "http://localhost:8080/blockingdemo"
+  phases:
+    - duration: 10
+      arrivalRate: 10
+      name: some load load
+    - duration: 10
+      arrivalRate: 100
+      name: high load
+
+scenarios:
+  - name: "suspend"
+    flow:
+      - get:
+          url: "/suspend/1/2"

@@ -20,3 +20,9 @@ interface BlockingdemoClient {
     @Get("/sleep/{s}/{id}")
     suspend fun waitSleep(s: Long, id: Int): HttpStatus
 }
+
+@Client("https://www.google.com")
+interface Google {
+    @Get("/")
+    suspend fun index(): String
+}

@@ -6,6 +6,7 @@ target/
 out/
 .micronaut/
 .idea
+node_modules/
 *.iml
 *.ipr
 *.iws

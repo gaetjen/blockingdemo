@@ -2,17 +2,15 @@ package com.example
 
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
-import io.micronaut.http.HttpStatus
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import kotlinx.coroutines.yield
 
 @Controller("/blockingdemoclient")
 class BlockingdemoclientController(
     private val client: BlockingdemoClient,
+    private val google: Google,
 ) {
 
     @Get("/suspend/{s}/{times}", produces = ["text/plain"])
@@ -62,6 +60,19 @@ class BlockingdemoclientController(
                 launch { client.waitSleep(s, it) }
             }
         }
+        return (System.currentTimeMillis() - start).toString()
+    }
+
+    @Get("/google/{times}")
+    suspend fun google(times: Int): String {
+        val start = System.currentTimeMillis()
+        withContext(Dispatchers.IO) {
+            repeat(times) {
+                println("launching #$it")
+                launch { google.index() }
+            }
+        }
+
         return (System.currentTimeMillis() - start).toString()
     }
 }
