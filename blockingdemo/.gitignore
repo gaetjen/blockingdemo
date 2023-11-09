@@ -5,7 +5,7 @@ build/
 target/
 out/
 .micronaut/
-.idea
+.idea/
 node_modules/
 *.iml
 *.ipr

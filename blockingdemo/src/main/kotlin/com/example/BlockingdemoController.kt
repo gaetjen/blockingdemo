@@ -9,23 +9,23 @@ import kotlinx.coroutines.runBlocking
 @Controller("/blockingdemo")
 class BlockingdemoController {
 
-    @Get("/suspend/{s}/{id}")
-    suspend fun waitSuspend(s: Long, id: Int): HttpStatus {
-        delay(s * 1000)
+    @Get("/suspend/{seconds}/{id}")
+    suspend fun waitSuspend(seconds: Long, id: Int): HttpStatus {
+        delay(seconds * 1000)
         return HttpStatus.OK
     }
 
-    @Get("/runblocking/{s}/{id}")
-    fun waitRunBlocking(s: Long, id: Int): HttpStatus {
+    @Get("/runblocking/{seconds}/{id}")
+    fun waitRunBlocking(seconds: Long, id: Int): HttpStatus {
         runBlocking {
-            delay(s * 1000)
+            delay(seconds * 1000)
         }
         return HttpStatus.OK
     }
 
-    @Get("/sleep/{s}/{id}")
-    fun waitSleep(s: Long, id: Int): HttpStatus {
-        Thread.sleep(s * 1000)
+    @Get("/sleep/{seconds}/{id}")
+    fun waitSleep(seconds: Long, id: Int): HttpStatus {
+        Thread.sleep(seconds * 1000)
         return HttpStatus.OK
     }
 }

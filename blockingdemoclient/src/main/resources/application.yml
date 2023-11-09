@@ -10,7 +10,7 @@ micronaut:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
   server:
-    port: 8001
+    port: 7999
     netty:
       worker:
         threads: 10000
@@ -21,6 +21,11 @@ micronaut:
       server:
         url: http://localhost:8080/
         path: "/blockingdemo/"
+        read-timeout: 10s
+        num-of-threads: 10000
+      mdc:
+        url: http://localhost:8001/
+        path: "/api/v1/logging-context"
         read-timeout: 10s
         num-of-threads: 10000
 netty:
